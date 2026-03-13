@@ -13,10 +13,11 @@ Copy all files from this folder into the project, then:
 npm start
 ```
 
-``` check for place holder values for API keys in respective files : 
+check for place holder values for API keys in respective files : 
+
 src/hooks/useJobSearch.js
 src/firebase.js
-src/hooks/useAIGeneration.js ```
+src/hooks/useAIGeneration.js
 ---
 
 
