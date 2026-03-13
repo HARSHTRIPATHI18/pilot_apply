@@ -1,70 +1,75 @@
-# Getting Started with Create React App
+# ApplyAI — Job Application Assistant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Setup
 
-## Available Scripts
+```bash
+npx create-react-app job-assistant
+cd job-assistant
+```
 
-In the project directory, you can run:
+Copy all files from this folder into the project, then:
 
-### `npm start`
+```bash
+npm start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+``` check for place holder values for API keys in respective files : 
+src/hooks/useJobSearch.js
+src/firebase.js
+src/hooks/useAIGeneration.js ```
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Folder Structure
 
-### `npm test`
+```
+src/
+│
+├── constants/
+│   └── index.js          ← All platforms, date filters, tab names, default profile
+│                           Edit here to add/remove job portals or time filters
+│
+├── utils/
+│   └── helpers.js        ← Pure utility functions (timeAgo, matchScore, matchColor, clipboard)
+│                           No React — easy to unit test
+│
+├── hooks/
+│   ├── useJobSearch.js   ← JSearch (RapidAPI) fetch logic + state
+│   └── useAIGeneration.js← Anthropic API calls for cover letter + autofill
+│                           Change the AI prompt here if you want different output style
+│
+├── styles/
+│   └── global.css        ← All CSS in one place: colors, spacing, animations, utility classes
+│                           Edit here to retheme the whole app
+│
+├── components/
+│   ├── Header.jsx          ← Top nav bar with logo + tab buttons
+│   ├── ProfileTab.jsx      ← Profile form (tab 0)
+│   ├── FindJobsTab.jsx     ← Search + platform/date filters + results (tab 1)
+│   ├── JobCard.jsx         ← Individual job result card (used inside FindJobsTab)
+│   ├── CoverLetterTab.jsx  ← Cover letter generator (tab 2)
+│   └── ApplicationKitTab.jsx← Autofill form answers (tab 3)
+│
+└── App.jsx               ← Root: owns shared state (tab, profile, selectedJob)
+                            Thin orchestration only — no business logic here
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Common Changes
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| What you want to change            | File to edit                          |
+|------------------------------------|---------------------------------------|
+| Add a new job portal               | `constants/index.js` → PLATFORMS      |
+| Add a new time filter              | `constants/index.js` → DATE_FILTERS   |
+| Change cover letter prompt style   | `hooks/useAIGeneration.js`            |
+| Add a new autofill question        | `hooks/useAIGeneration.js`            |
+| Change colors / fonts / spacing    | `styles/global.css`                   |
+| Add a new tab                      | `constants/index.js` + `App.jsx`      |
+| Change match score algorithm       | `utils/helpers.js` → matchScore()     |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## API Keys
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **JSearch (RapidAPI):** Enter in the Find Jobs tab UI. Get it at https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch
+- **Anthropic API:** The cover letter and autofill features call `api.anthropic.com` directly. This works out of the box in the Claude artifact environment. For local use, you'll need to proxy the request through a small backend to keep your key safe.

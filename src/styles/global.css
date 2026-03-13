@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0B0C10;
+  color: #E8E9F0;
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+input,
+textarea {
+  outline: none;
+  font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #454659;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: #13141A; }
+::-webkit-scrollbar-thumb  { background: #2A2B35; border-radius: 4px; }
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Utility classes ─── */
+
+/* Page-level fade-in */
+.fade-up {
+  animation: fadeUp 0.28s ease forwards;
+}
+
+/* Spinning loader icon */
+.spin {
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Cards — lift on hover */
+.hover-card {
+  transition: transform 0.18s, border-color 0.18s;
+  cursor: pointer;
+}
+.hover-card:hover {
+  transform: translateY(-2px);
+  border-color: #3D3F5A !important;
+}
+
+/* Buttons — slight lift on hover */
+.hover-btn {
+  transition: opacity 0.14s, transform 0.14s;
+  cursor: pointer;
+}
+.hover-btn:hover  { opacity: 0.85; transform: translateY(-1px); }
+.hover-btn:active { transform: translateY(0); }
+
+/* Input focus ring */
+.input-focus:focus {
+  border-color: #7C7FFF !important;
+}
+
+/* Small pill toggles */
+.pill {
+  transition: transform 0.15s;
+  cursor: pointer;
+}
+.pill:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7C7FFF, #C77DFF);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.btn-ghost {
+  background: #13141A;
+  border: 1px solid #1E1F2B;
+  color: #A8ABD0;
+  padding: 7px 16px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.input-field {
+  width: 100%;
+  background: #13141A;
+  border: 1px solid #1E1F2B;
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #E8E9F0;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+textarea.input-field {
+  resize: vertical;
+}
+
+.field-label {
+  display: block;
+  font-size: 11px;
+  color: #6B6D85;
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.empty-state {
+  background: #13141A;
+  border: 1px solid #1E1F2B;
+  border-radius: 12px;
+  padding: 36px;
+  text-align: center;
+  color: #6B6D85;
+  font-size: 14px;
+}
+
+.empty-state .empty-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.error-banner {
+  background: #2A0A0A;
+  border: 1px solid rgba(255, 68, 68, 0.27);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #FF9999;
+}
+
+/* API key box */
+.api-key-box {
+  background: #13141A;
+  border: 1px solid #2A2040;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 18px;
+}
+
+.api-key-label {
+  font-size: 11px;
+  color: #7C7FFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.api-key-hint {
+  font-size: 11px;
+  color: #454659;
+  margin-top: 6px;
+}
+
+/* Selected job banner */
+.selected-job-bar {
+  background: #13141A;
+  border: 1px solid #1E1F2B;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.output-box {
+  background: #0D0E14;
+  border: 1px solid #1E1F2B;
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 12px;
+  line-height: 1.8;
+  font-size: 14px;
+  color: #C8CADC;
+  white-space: pre-wrap;
+}
+
+/* Autofill section card */
+.autofill-card {
+  background: #0D0E14;
+  border: 1px solid #1E1F2B;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+}
+
+.autofill-card-label {
+  font-size: 11px;
+  color: #C77DFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 7px;
+}
+
+.autofill-card-text {
+  font-size: 14px;
+  color: #C8CADC;
+  line-height: 1.65;
+}

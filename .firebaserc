@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "job-assistant-74b9f"
+  },
+  "targets": {
+    "job-assistant-74b9f": {
+      "hosting": {
+        "pilotapply": [
+          "pilotapply"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
